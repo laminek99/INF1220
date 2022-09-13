@@ -1,0 +1,52 @@
+import java.util.Scanner;
+
+public class Solution {
+
+	
+private static final int gridSize = 9;
+  
+public static void main(String[] args) {
+    
+	var donnees = "001 012 023 034 045 056 067 078 089 102 113 124 135 146 157 168 179 181 203 214 225 236 247 258 269 271 282 304 315 326 337 348 359 361 372 383 405 416 427 438 449 451 462 473 484 506 517 528 539 541 552 563 574 585 607 618 629 631 642 652 664 675 686 708 719 721 732 743 754 765 774 787 809 811 822 833 844 855 866 877 888";
+	var grille = new int[9][9];
+	
+	remplir_grille(grille, donnees);
+	afficher_grille(grille);
+	transpose_grille(grille );
+	
+}			
+public static void remplir_grille(int[][] grille, String donnees) {
+	    try (var scanner = new Scanner(donnees)) {
+			while (scanner.hasNextInt()) {
+			    var element = scanner.nextInt();
+			    var l = element / 100;
+			    var c =(element / 10) % 10;
+			    var number = element % 10;
+			    grille[l][c] = number;
+			}
+		}
+  
+} 
+public static void afficher_grille(int[][] grille) {
+    for (int l = 0; l < gridSize; l++) {
+      if (l % 3 == 0 && l != 0) {
+        System.out.println("-----------");
+      }
+      for (int c = 0; c < gridSize; c++) {
+        if (c % 3 == 0 && c != 0) {
+          System.out.print("|");
+        }
+        System.out.print(grille[l][c]);
+      }
+      System.out.println();
+    }
+  }
+public static void transpose_grille(int[][] grille ) {
+	for ( int l = 0; 1 < gridSize; l++) {
+		for (int c = 0; c < gridSize; c++) {
+				 grille[l][c] = grille[c][l];
+				 System.out.print(grille[c][l]);
+		}
+	}			 
+} 
+}
